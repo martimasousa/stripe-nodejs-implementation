@@ -9,11 +9,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET)
 // Change this if you are not running on localhost
 const DOMAIN = "http://localhost:" + process.env.PORT + "/"
 
-// Populate this with your Stripe products prices IDs
+// Populate this with your Stripe products prices IDs (replace <price_id>)
 const SUBSCRIPTIONS = [
-    "price_1OdCCEIPZBp7aWOr9UKgMODn",
-    "price_1OdCCjIPZBp7aWOr1MnsFDOB",
-    "price_1OdfaZIPZBp7aWOrAZ7BwNzi"
+    "price_<price_id>",
+    "price_<price_id>",
+    "price_<price_id>"
 ]
 
 
@@ -266,9 +266,6 @@ app.post('/portal', async (req, res) => {
 
 // Execute some scripts (outside the app)
 app.get('/retrieve', async (req, res) => {
-    //const subscription = await stripe.subscriptions.retrieve('sub_1OdlMPIPZBp7aWOrRHj294xd')
-    //console.log(subscription.status)
-
     // Delete all subscriptions
     const subscriptions = await stripe.subscriptions.list({})
     for (const sub of subscriptions.data) {
@@ -280,7 +277,6 @@ app.get('/retrieve', async (req, res) => {
     for (const cus of customers.data) {
         await stripe.customers.del(cus.id)
     }
-
 
     res.redirect(DOMAIN)
 })

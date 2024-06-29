@@ -7,6 +7,8 @@ Stripe official documentation [here](https://stripe.com/docs/api).
 We are using ExpressJS for a simple and low level front and back end interface.
 
 The databases are implemented with .txt files (in ```/db_simulation``` directory) and the module fs (to access and edit) in order to simplify the code.
+- ```/db_simulation/users_table.txt``` is used to store all the users and their subscription information.
+- ```/db_simulation/logged_events_table.txt``` is used to store all the payment events in order to avoid duplicate subscription registration.
 
 
 ## Get started
